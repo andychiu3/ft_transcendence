@@ -1,0 +1,21 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy"
+		content="
+		default-src 'self';
+		connect-src 'self';
+		script-src 'self';
+		style-src 'self';
+		img-src 'self' https://www.google.com data:;
+		">
+  <title>transcendencePongGame SPA</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+	<div id="app"></div>
+	<script type="module" src="/src/app.ts"></script>
+</body>
+</html>
