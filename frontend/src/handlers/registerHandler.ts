@@ -9,9 +9,10 @@ export function	registerHandler() {
 			const formData = new FormData(form as HTMLFormElement);
 			const email = formData.get('email');
 			const password = formData.get('password');
+			const backendUrl = import.meta.env.VITE_BACKEND_URL || 'localhost:3000';
 
 			try {
-				const response = await fetch('/api/register', {
+				const response = await fetch(`//${backendUrl}/api/register`, {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({ email, password }),
