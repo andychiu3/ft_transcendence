@@ -2,6 +2,8 @@
 
 A full-stack SPA web app featuring real-time multiplayer Pong gameplay, comprehensive user management and tournament organization.
 
+Only frontend content is deployed at the moment: [visit the live app](https://42-transcendence-achiu.vercel.app)
+
 <br>
 
 ## Features
