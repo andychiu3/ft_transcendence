@@ -1,7 +1,9 @@
+import { getApiUrl } from "./config";
+
 export async function	verifyJwt(): Promise<boolean> {
 	try {
-		const result = await fetch('/api/auth/verify', {
-			// headers: { Authorization: `Bearer ${token}` },
+		const apiUrl = getApiUrl('/api/auth/verify');
+		const result = await fetch(apiUrl, {
 			credentials: 'include'
 		});
 		const data = await result.json();
