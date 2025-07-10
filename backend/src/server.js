@@ -17,7 +17,7 @@ fastify.register(require('@fastify/cors'), {
 	methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
 	allowedHeaders: ['Content-Type', 'Authorization'],
 	credentials: true,
-}); // does not seem to be needed if vite is set
+});
 fastify.register(require('@fastify/multipart'), {
 	limits: {
 		fileSize: 6 * 1024 * 1024,

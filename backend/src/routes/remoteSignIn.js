@@ -62,8 +62,9 @@ async function handleGoogleCallback(request, reply) {
 		{ id: user.id, email: user.email }, 
 		process.env.JWT_SECRET, 
 		{ expiresIn: '1h' });
-	reply.header('Set-Cookie', 
-		`jwt=${token}; HttpOnly; Path=/; SameSite=Lax; Max-Age=3600`); // Secure may be needed if https only is preferred
+	const isLocalhost = request.headers.origin?.includes('localhost');
+		reply.header('Set-Cookie', 
+			`jwt=${token}; HttpOnly; Path=/; SameSite=${isLocalhost ? 'Lax' : 'None'}; Max-Age=3600${isLocalhost? '' : '; Secure'}`);
 	console.log('✅ got jwt now redirecting...');
 	reply.redirect(`${process.env.FRONTEND_URL}/home`);
 }

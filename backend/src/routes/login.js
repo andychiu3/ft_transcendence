@@ -24,8 +24,10 @@ async function login(fastify, opts) {
 			process.env.JWT_SECRET,
 			{ expiresIn: '1h'}
 		);
+		console.log(process.env.JWT_SECRET);
+		const isLocalhost = request.headers.origin?.includes('localhost');
 		reply.header('Set-Cookie', 
-			`jwt=${token}; HttpOnly; Path=/; SameSite=None; Max-Age=3600; Secure`); // have to add secure; if https only
+			`jwt=${token}; HttpOnly; Path=/; SameSite=${isLocalhost ? 'Lax' : 'None'}; Max-Age=3600${isLocalhost? '' : '; Secure'}`);
 		reply.send({ success: true });
 	})
 }
