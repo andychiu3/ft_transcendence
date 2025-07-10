@@ -1,3 +1,5 @@
+import { getApiUrl } from "../../utils/config";
+
 function	toggleNameEdit(edit: boolean) {
 	const profileName = document.getElementById('profileName')!;
 	const changeBtn = document.getElementById('changeName')!;
@@ -22,7 +24,8 @@ function	toggleNameEdit(edit: boolean) {
 
 async function submitNameChange(newName: string): Promise<boolean> {
 	try {
-		const response = await fetch('/api/profile/name', {
+		const apiUrl = getApiUrl('/api/profile/name');
+		const response = await fetch(apiUrl, {
 			method: 'PATCH',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ newName }),

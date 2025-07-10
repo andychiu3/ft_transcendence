@@ -1,3 +1,5 @@
+import { getApiUrl } from "../../utils/config";
+
 export function	showPasswordForm() {
 	document.getElementById('passwordForm')?.classList.remove('hidden');
 }
@@ -11,10 +13,12 @@ export async function submitPasswordChange() {
 	const newPassword = (document.getElementById('newPassword') as HTMLInputElement).value;
 
 	try {
-		const response = await fetch('/api/profile/password', {
+		const apiUrl = getApiUrl('/api/profile/password');
+		const response = await fetch(apiUrl, {
 			method: 'PATCH',
 			headers: { 'Content-Type': 'application/json'},
-			body: JSON.stringify({ oldPassword, newPassword })
+			body: JSON.stringify({ oldPassword, newPassword }),
+			credentials: 'include',
 		});
 
 		const result = await response.json();

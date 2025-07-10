@@ -14,7 +14,7 @@ export function	registerHandler() {
 			const apiUrl = getApiUrl('/api/register');
 
 			try {
-				console.log(apiUrl);
+				// console.log(apiUrl);
 				const response = await fetch(apiUrl, {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },

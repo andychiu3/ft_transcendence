@@ -1,3 +1,4 @@
+import { getApiUrl } from "../../utils/config";
 // ideally should be processed by backend
 // but I like the way of static so keeping this part for now
 function	setAvatar(userId: number) {
@@ -16,9 +17,11 @@ async function	uploadAvatar(userId: number, file: File) {
 	formData.append('avatar', file);
 
 	try {
-		const response = await fetch('/api/avatar', {
+		const apiUrl = getApiUrl('/api/avatar')
+		const response = await fetch(apiUrl, {
 			method: 'POST',
 			body: formData,
+			credentials: 'include',
 		});
 		const result = await response.json();
 

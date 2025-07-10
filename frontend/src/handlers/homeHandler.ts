@@ -5,11 +5,12 @@ import { renderMatchHistory } from '../pages/matchHistory';
 import { logoutHandler } from "./logoutHandler";
 import { renderUsers } from '../pages/users';
 import { connectWebSocket } from '../utils/userWebSocket';
+import { getApiUrl } from '../utils/config';
 
 async function	loadProfile(): Promise<void> {
 	try {
-		const response = await fetch('/api/profile', {
-			// headers: { Authorization: `Bearer ${token}` },
+		const apiUrl = getApiUrl('/api/profile')
+		const response = await fetch(apiUrl, {
 			credentials: 'include',
 		});
 		const { ok, data } = await response.json();
@@ -29,8 +30,9 @@ async function	loadProfile(): Promise<void> {
 
 async function loadMatchHistory(): Promise<void> {
 	try {
-		const response = await fetch('/api/match/history', {
-			credentials: 'include', // tho it is not needed at the moment
+		const apiUrl = getApiUrl('/api/match/history')
+		const response = await fetch(apiUrl, {
+			credentials: 'include',
 		});
 		if (response.ok) {
 			const data = await response.json();
@@ -49,7 +51,8 @@ async function loadMatchHistory(): Promise<void> {
 
 async function loadUsers(): Promise<void> {
 	try {
-		const response = await fetch('/api/users', {
+		const apiUrl = getApiUrl('/api/users');
+		const response = await fetch(apiUrl, {
 			credentials: 'include',
 		});
 		if (response.ok) {

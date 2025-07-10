@@ -1,4 +1,5 @@
 import { verifyJwt } from '../utils/verifyJwt';
+import { getApiUrl } from '../utils/config';
 
 async function	send2FA(formData: FormData) {
 	const email = formData.get('email') as string;
@@ -8,10 +9,12 @@ async function	send2FA(formData: FormData) {
 	}
 
 	try {
-		const response = await fetch('/api/send2FACode', {
+		const apiUrl = getApiUrl('/api/send2FACode');
+		const response = await fetch(apiUrl, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json'},
 			body: JSON.stringify({ email }),
+			credentials: 'include',
 		});
 		const result = response.json();
 		if (response.ok)
@@ -48,10 +51,12 @@ async function authAppSecretHandler(formData: FormData) {
 		return ;
 	}
 	try {
-		const response = await fetch('/api/authAppSecretCheck', {
+		const apiUrl = getApiUrl('/api/authAppSecretCheck');
+		const response = await fetch(apiUrl, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ email }),
+			credentials: 'include',
 		});
 		if (!response.ok) {
 			alert('please register first.');
@@ -95,20 +100,26 @@ async function setupLoginForm() {
 		const authCode = formData.get('code');
 		const method = formData.get('method');
 		// console.log("Form data:", { email, password, authCode });
+		try {
+			const apiUrl = getApiUrl('api/login');
+			const response = await fetch(apiUrl, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ email, password, authCode, method }),
+				credentials: 'include',
+			});
 
-		const response = await fetch('api/login', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ email, password, authCode, method }),
-		});
-
-		const result = await response.json();
-		if (response.ok) {
-			alert('login succeeded');
-			import('../app').then((m) => m.navigate('/home'));
+			const result = await response.json();
+			if (response.ok) {
+				alert('login succeeded');
+				import('../app').then((m) => m.navigate('/home'));
+			}
+			else
+				alert('login failed: ' + String(result.error));
 		}
-		else
-			alert('login failed: ' + String(result.error));
+		catch (err) {
+			alert('login failed?');
+		}
 	});
 }
 

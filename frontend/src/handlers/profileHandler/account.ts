@@ -1,9 +1,11 @@
 import { logoutHandler } from "../logoutHandler";
+import { getApiUrl } from "../../utils/config";
 
 export async function hookDeletion() {
 	document.getElementById('deleteAccount')?.addEventListener('click', async () => {
 		try {
-			const response = await fetch('/api/account', {
+			const apiUrl = getApiUrl('/api/account');
+			const response = await fetch(apiUrl, {
 				method: 'DELETE',
 				credentials: 'include',
 			});

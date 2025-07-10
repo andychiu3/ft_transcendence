@@ -1,4 +1,5 @@
 import { navigate } from "../app";
+import { getApiUrl } from "../utils/config";
 
 var canvas: HTMLCanvasElement;
 var ctx: CanvasRenderingContext2D;
@@ -245,10 +246,12 @@ function triggerPowerup(ballxspeed: number) {
 
 async function saveMatchResult(tournament: any) {
 	try {
-		const response = await fetch('/api/match-result', {
+		const apiUrl = getApiUrl('/api/match-result');
+		const response = await fetch(apiUrl, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json'},
-			body: JSON.stringify(tournament)
+			body: JSON.stringify(tournament),
+			credentials: 'include',
 		});
 		if (!response.ok)
 			alert('failed saving match result');
@@ -261,14 +264,14 @@ async function saveMatchResult(tournament: any) {
 async function updateStatIfUserPlaysWithAi() {
 	if (!aienabled)
 		return ;
-	// console.log('winner: ', winningplayer);
 	const result = (winningplayer === 'Player 1') ? 'win' : 'lose';
-	// console.log('result', result);
 	try {
-		const response = await fetch('/api/stat', {
+		const apiUrl = getApiUrl('/api/stat');
+		const response = await fetch(apiUrl, {
 			method: 'PATCH',
 			headers: { 'Content-Type': 'application/json'},
-			body: JSON.stringify({ result })
+			body: JSON.stringify({ result }),
+			credentials: 'include',
 		});
 		if (!response.ok) {
 			console.log('would not update if not sign in');
