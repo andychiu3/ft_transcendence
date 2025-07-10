@@ -14,7 +14,7 @@ fastify.register(require('@fastify/static'), {
 });
 fastify.register(require('@fastify/cors'), {
 	origin: ['http://localhost:5173', 'https://localhost', 'https://42-transcendence-achiu.vercel.app'],
-	method: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+	methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
 	allowedHeaders: ['Content-Type', 'Authorization'],
 	credentials: true,
 }); // does not seem to be needed if vite is set

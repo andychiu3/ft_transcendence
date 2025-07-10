@@ -25,7 +25,7 @@ async function login(fastify, opts) {
 			{ expiresIn: '1h'}
 		);
 		reply.header('Set-Cookie', 
-			`jwt=${token}; HttpOnly; Path=/; SameSite=Lax; Max-Age=3600; Secure`); // have to add secure; if https only
+			`jwt=${token}; HttpOnly; Path=/; SameSite=None; Max-Age=3600; Secure`); // have to add secure; if https only
 		reply.send({ success: true });
 	})
 }
