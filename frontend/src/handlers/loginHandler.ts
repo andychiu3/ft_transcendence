@@ -101,7 +101,7 @@ async function setupLoginForm() {
 		const method = formData.get('method');
 		// console.log("Form data:", { email, password, authCode });
 		try {
-			const apiUrl = getApiUrl('api/login');
+			const apiUrl = getApiUrl('/api/login');
 			const response = await fetch(apiUrl, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
