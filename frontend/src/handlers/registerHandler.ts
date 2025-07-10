@@ -12,6 +12,7 @@ export function	registerHandler() {
 			const password = formData.get('password');
 			// const backendUrl = import.meta.env.VITE_BACKEND_URL || 'localhost:3000';
 			const apiUrl = getApiUrl('/api/register');
+			console.log(apiUrl);
 
 			try {
 				// console.log(apiUrl);
