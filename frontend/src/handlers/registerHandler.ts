@@ -1,4 +1,5 @@
 import { navigate } from "../app";
+import { getApiUrl } from "../utils/config";
 
 export function	registerHandler() {
 	const form = document.getElementById('registerForm');
@@ -9,10 +10,12 @@ export function	registerHandler() {
 			const formData = new FormData(form as HTMLFormElement);
 			const email = formData.get('email');
 			const password = formData.get('password');
-			const backendUrl = import.meta.env.VITE_BACKEND_URL || 'localhost:3000';
+			// const backendUrl = import.meta.env.VITE_BACKEND_URL || 'localhost:3000';
+			const apiUrl = getApiUrl('/api/register');
 
 			try {
-				const response = await fetch(`//${backendUrl}/api/register`, {
+				console.log(apiUrl);
+				const response = await fetch(apiUrl, {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({ email, password }),
