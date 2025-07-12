@@ -30,12 +30,11 @@ function	addFriend(userId: number, targetId: number) {
 
 wss.on('connection', async (ws: WebSocket, request: IncomingMessage) => {
 	console.log('-> connected.');
-	console.log('cookie: ', request.headers.cookie);
 
 	let	userId;
 	try {
-		const payload = await jwtAuthenticator(request);
-		userId = payload.id;
+		// const payload = await jwtAuthenticator(request);
+		// userId = payload.id;
 
 		// microservices communication which is required from subject.
 		const response = await fetch(`${process.env.BACKEND_URL}/api/auth/verify`, {
@@ -46,6 +45,10 @@ wss.on('connection', async (ws: WebSocket, request: IncomingMessage) => {
 		});
 		if (!response.ok)
 			throw new Error('backend user validation failed.');
+
+		const data = await response.json();
+		userId = data.userId;
+		console.log('user id: ', userId);
 
 		onlineUsers.add(userId);
 		console.log(`User: ${userId} online(got payload)`);
