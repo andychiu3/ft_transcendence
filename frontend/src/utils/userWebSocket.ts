@@ -15,11 +15,12 @@ const statusMap: Record<number, FriendStatus> = {};
 // 	let url = `${protocol}//${host}/ws`;
 // 	return url;
 // }
-// console.log(getWebSocketUrl());
+
 
 // does not seem to work for Safari. does not swap itself if relative route given?
 // let ws = new WebSocket('/ws');
 let ws = new WebSocket(getWebSocketUrl());
+console.log(getWebSocketUrl());
 
 export function	connectWebSocket() {
 	if (!ws || ws.readyState === WebSocket.CLOSED)

@@ -30,7 +30,7 @@ function	addFriend(userId: number, targetId: number) {
 
 wss.on('connection', async (ws: WebSocket, request: IncomingMessage) => {
 	console.log('-> connected.');
-	// console.log('check the header: ', request.headers);
+	console.log('cookie: ', request.headers.cookie);
 
 	let	userId;
 	try {
