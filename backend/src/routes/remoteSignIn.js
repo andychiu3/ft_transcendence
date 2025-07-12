@@ -66,7 +66,7 @@ async function handleGoogleCallback(request, reply) {
 		reply.header('Set-Cookie', 
 			`jwt=${token}; HttpOnly; Path=/; SameSite=${isLocalhost ? 'Lax' : 'None'}; Max-Age=3600${isLocalhost? '' : '; Secure'}`);
 	console.log('✅ got jwt now redirecting...');
-	reply.redirect(`${process.env.FRONTEND_URL}/home`);
+	reply.redirect(`${process.env.FRONTEND_URL}`);
 }
 
 async function remoteSignIn(fastify) {
