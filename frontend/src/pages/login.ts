@@ -2,7 +2,6 @@ import { getApiUrl } from "../utils/config";
 
 export function renderLoginPage(): string {
 	const oAuthUrl = getApiUrl('/api/auth/google');
-	console.log('oAuth:', oAuthUrl);
 	return `
 	<div class="flex flex-col items-center">
 		<div class="bg-white p-6 rounded shadow-md w-80 text-left">

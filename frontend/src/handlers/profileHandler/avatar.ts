@@ -6,7 +6,6 @@ function	setAvatar(userId: number) {
 	const avatarImg = document.getElementById('avatarImg') as HTMLImageElement;
 	const avatarUrl = getApiUrl(`/avatar/upload/${userId}.png` + `?${Date.now}`);
 	const fallbackUrl = getApiUrl('/avatar/42.svg');
-	console.log('avatarUrl: ', avatarUrl, 'defaultUrl: ', fallbackUrl);
 
 	avatarImg.src = avatarUrl; // Date.now() forces browser to reload the pic
 	avatarImg.onerror = () => {

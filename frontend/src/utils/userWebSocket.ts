@@ -1,4 +1,6 @@
 import { updateUserUI } from "../handlers/usersHandler";
+import { getWebSocketUrl } from "./config";
+
 export interface FriendStatus {
 	id: number;
 	isFriend: boolean;
@@ -7,13 +9,13 @@ export interface FriendStatus {
 
 const statusMap: Record<number, FriendStatus> = {};
 
-const getWebSocketUrl = () => {
-	const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-	const host = window.location.host;
-	let url = `${protocol}//${host}/ws`;
-	return url;
-}
-console.log(getWebSocketUrl());
+// const getWebSocketUrl = () => {
+// 	const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+// 	const host = window.location.host;
+// 	let url = `${protocol}//${host}/ws`;
+// 	return url;
+// }
+// console.log(getWebSocketUrl());
 
 // does not seem to work for Safari. does not swap itself if relative route given?
 // let ws = new WebSocket('/ws');
