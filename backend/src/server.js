@@ -13,7 +13,7 @@ fastify.register(require('@fastify/static'), {
 	prefix: '/avatar/', // GET start with /avatar will look for the root
 });
 fastify.register(require('@fastify/cors'), {
-	origin: ['http://localhost:5173', 'https://localhost', 'https://42-transcendence-achiu.vercel.app'],
+	origin: ['https://authplay.vercel.app'],
 	methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
 	allowedHeaders: ['Content-Type', 'Authorization'],
 	credentials: true,
