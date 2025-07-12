@@ -10,5 +10,5 @@ export function	getWebSocketUrl() {
 	if (isLocalhost)
 		return `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/ws`;
 	else
-		return 'wss://ft-transcendence-rtjp.onrender.com/ws'
+		return 'wss://websocket-o3f2.onrender.com/ws'
 }
