@@ -1,4 +1,7 @@
+import { getApiUrl } from "../utils/config";
+
 export function renderLoginPage(): string {
+	const oAuthRul = getApiUrl('/api/auth/google');
 	return `
 	<div class="flex flex-col items-center">
 		<div class="bg-white p-6 rounded shadow-md w-80 text-left">
@@ -38,7 +41,7 @@ export function renderLoginPage(): string {
 
 			<div class="flex flex-col space-y-2">
 				<a href="/register" data-link class="text-sm text-gray-600 underline text-center"> Register </a>
-				<a href="/api/auth/google" class="flex w-full items-center justify-center text-sm text-gray-600 underline">
+				<a href="${oAuthRul}" class="flex w-full items-center justify-center text-sm text-gray-600 underline">
 					<img src="https://www.google.com/favicon.ico" alt="Google" class="w-4 h-4 mr-2" />
 					Sign in with Google
 				</a>

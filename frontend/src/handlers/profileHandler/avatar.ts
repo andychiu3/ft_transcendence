@@ -1,14 +1,16 @@
 import { getApiUrl } from "../../utils/config";
+
 // ideally should be processed by backend
 // but I like the way of static so keeping this part for now
 function	setAvatar(userId: number) {
 	const avatarImg = document.getElementById('avatarImg') as HTMLImageElement;
-	const avatarInput = document.getElementById('avatarInput') as HTMLInputElement;
+	const avatarUrl = getApiUrl(`/avatar/upload/${userId}.png` + `?${Date.now}`);
+	const fallbackUrl = getApiUrl('/avatar/42.svg');
 
-	avatarImg.src = `/avatar/upload/${userId}.png?${Date.now()}`; // Date.now() forces browser to reload the pic
+	avatarImg.src = avatarUrl; // Date.now() forces browser to reload the pic
 	avatarImg.onerror = () => {
 		avatarImg.onerror = null;
-		avatarImg.src = `/avatar/42.svg`; // GET /avatar/default.png HTTP/1.1
+		avatarImg.src = fallbackUrl; // GET /avatar/default.png HTTP/1.1
 	}
 }
 
