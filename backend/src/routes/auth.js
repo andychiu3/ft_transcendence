@@ -6,7 +6,7 @@ async function	auth(fastify, opts) {
 			console.log('requested from: ', request.headers['x-from'] || 'frontend');
 			const payload = await authJwt(request);
 			console.log('✅ /api/auth/verify JWT verified.');
-			reply.send({ ok: true, userId: payload.id });
+			reply.send({ ok: true, data: payload });
 		}
 		catch (err) {
 			console.error('❌ /api/auth/verify JWT verification failed.');

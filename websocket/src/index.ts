@@ -2,6 +2,7 @@ import { WebSocketServer, WebSocket } from 'ws';
 import { IncomingMessage } from 'http'; // includes headers, method and url
 import 'dotenv/config';
 import { jwtAuthenticator } from './jwtAuth';
+import { parse } from 'url';
 
 const wss = new WebSocketServer({ port: 3001, host: '0.0.0.0' });
 
@@ -33,25 +34,29 @@ wss.on('connection', async (ws: WebSocket, request: IncomingMessage) => {
 
 	let	userId;
 	try {
+		const parseUrl = parse(request.url || '', true);
+		userId = parseUrl.query.token;
+		if (!userId || Array.isArray(userId)) {
+			console.error('user ID invalid');
+			ws.close();
+			return ;
+		}
+
 		// const payload = await jwtAuthenticator(request);
 		// userId = payload.id;
-
+		// console.log('user id:', userId, typeof userId);
 		// microservices communication which is required from subject.
-		const response = await fetch(`${process.env.BACKEND_URL}/api/auth/verify`, {
-			headers: { 
-				'Cookie': request.headers.cookie || '', 
-				'X-From': 'WebSocket' 
-			}
-		});
-		if (!response.ok)
-			throw new Error('backend user validation failed.');
+		// const response = await fetch(`${process.env.BACKEND_URL}/api/auth/verify`, {
+		// 	headers: { 
+		// 		'Cookie': request.headers.cookie || '', 
+		// 		'X-From': 'WebSocket' 
+		// 	}
+		// });
+		// if (!response.ok)
+		// 	throw new Error('backend user validation failed.');
 
-		const data = await response.json();
-		userId = data.userId;
-		console.log('user id: ', userId);
-
-		onlineUsers.add(userId);
-		console.log(`User: ${userId} online(got payload)`);
+		onlineUsers.add(Number(userId));
+		console.log(`User: ${userId} online`);
 	}
 	catch (err) {
 		console.error(err.message);
@@ -61,7 +66,7 @@ wss.on('connection', async (ws: WebSocket, request: IncomingMessage) => {
 
 	ws.on('message', (data: string) => {
 		const msg = JSON.parse(data);
-		console.log(msg);
+		// console.log(msg);
 		if (msg.method === 'checkOnline') {
 			const online = onlineUsers.has(msg.id);
 			ws.send(JSON.stringify({ method: 'onlineStatus', id: msg.id, online }));
