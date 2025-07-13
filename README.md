@@ -1,8 +1,16 @@
-# ft_transcendence
+## ft_transcendence
 
-A full-stack SPA web app featuring real-time multiplayer Pong gameplay, comprehensive user management and tournament organization.
+A full-stack Single-page web app featuring:  
+ - real-time multiplayer Pong gameplay
+ - multiple authentication methods (2FA via email, auth app and OAuth)
+ - comprehensive user management
+ - tournament organization.
 
-Only frontend content is deployed at the moment: [visit the live app](https://authplay.vercel.app)
+[visit the live app](https://authplay.vercel.app)
+
+## Deployment:
+Frontend: `Vercel`  
+Backend: `Render` (note: free tier may introduce some latency)
 
 <br>
 
@@ -42,7 +50,7 @@ Only frontend content is deployed at the moment: [visit the live app](https://au
 
 <br>
 
-## How to use
+## If wanna check the project locally
 
 Get the repo
 ```bash
@@ -58,7 +66,7 @@ Open the browser
 ```bash
 https://localhost
 ```
-**Note:** ssl/tls is set to be self-signed so so the browser may ask you to accept the risk.
+**Note:** ssl/tls is set to be self-signed so the browser may ask you to accept the risk.
 
 
 Dev mode is also available since the frontend is build with vite
