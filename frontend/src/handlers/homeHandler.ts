@@ -80,6 +80,7 @@ const tabHandler: Record<string, () => Promise<void>> = {
 export async function	homeHandler(): Promise<void> {
 	const isloggedin = await verifyJwt();
 	if (!isloggedin) {
+		document.getElementById('Render-case')?.classList.add('hidden');
 		document.querySelector('#login-logout a[data-link]')!.classList.remove('hidden');
 		document.getElementById('main-content')?.classList.remove('ml-64');
 	}
