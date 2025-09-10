@@ -80,15 +80,12 @@ const tabHandler: Record<string, () => Promise<void>> = {
 export async function	homeHandler(): Promise<void> {
 	const isloggedin = await verifyJwt();
 	if (!isloggedin) {
-		document.getElementById('Render-case')?.classList.add('hidden');
-		document.querySelector('#login-logout a[data-link]')!.classList.remove('hidden');
-		document.getElementById('main-content')?.classList.remove('ml-64');
+		navigate('/login');
+		return ;
 	}
 	else {
 		connectWebSocket();
 
-		document.getElementById('sidebar')?.classList.remove('hidden');
-		document.getElementById('main-content')?.classList.add('ml-64');
 		document.getElementById('logout-button')!.addEventListener('click', logoutHandler);
 
 		document.querySelectorAll('[data-tab]').forEach((element) => {
@@ -102,6 +99,33 @@ export async function	homeHandler(): Promise<void> {
 		});
 	}
 }
+
+	
+// export async function	homeHandler(): Promise<void> {
+// 	const isloggedin = await verifyJwt();
+// 	if (!isloggedin) {
+// 		document.getElementById('Render-case')?.classList.add('hidden');
+// 		document.querySelector('#login-logout a[data-link]')!.classList.remove('hidden');
+// 		document.getElementById('main-content')?.classList.remove('ml-64');
+// 	}
+// 	else {
+// 		connectWebSocket();
+
+// 		document.getElementById('sidebar')?.classList.remove('hidden');
+// 		document.getElementById('main-content')?.classList.add('ml-64');
+// 		document.getElementById('logout-button')!.addEventListener('click', logoutHandler);
+
+// 		document.querySelectorAll('[data-tab]').forEach((element) => {
+// 			element.addEventListener('click', async (event) => {
+// 				event.preventDefault();
+
+// 				const tab = element.getAttribute('data-tab');
+// 				if (tab && tabHandler[tab])
+// 					await tabHandler[tab]();
+// 			});
+// 		});
+// 	}
+// }
 
 // fixing hard refresh -> relink -> don't add data-link dynamically -> event delegate
 // document.getElementById('login-logout')!.innerHTML += `

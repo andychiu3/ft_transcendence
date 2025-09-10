@@ -3,7 +3,7 @@ import { getApiUrl } from "../utils/config";
 export function renderLoginPage(): string {
 	const oAuthUrl = getApiUrl('/api/auth/google');
 	return `
-	<div class="flex flex-col items-center">
+	<div class="flex flex-col items-center justify-center min-h-screen w-full">
 		<div class="bg-white p-6 rounded shadow-md w-80 text-left">
 			<h2 class="text-2xl font-bold mb-4 text-center"> Login </h2>
 

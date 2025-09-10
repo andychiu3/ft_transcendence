@@ -1,6 +1,6 @@
 export function renderPongPage(): string {
 	return `
-		<div class="flex flex-col items-center justify-center min-h-screen bg-black">
+		<div class="flex flex-col items-center justify-center min-h-screen bg-black min-h-screen w-full">
 			<h1 id="match-title" class="text-white text-4xl mb-4"></h1>
 			<div id="user-names"class="mb-4 text-white">
 				<span id="player1Name" class="text-5xl mr-10">Player 1</span>
@@ -12,6 +12,8 @@ export function renderPongPage(): string {
 			</div>
 			<canvas id="pongCanvas" width="800" height="400" class="border border-white"></canvas>
 			<p id="powerupInfo" class="text-white text-center"></p>
+			<div id="winnerInfo" class="mt-4 text-white text-center gap-2 flex flex-col">
+			</div>
 			<div id="startInfo" class="mt-4 text-white text-center gap-2 flex flex-col">
 				<button id="startButton" class="px-4 py-2 bg-white text-black rounded">Start</button>
 				<p>Player 1: W & S for movement</p>
@@ -46,8 +48,6 @@ export function renderPongPage(): string {
 						<input type="color" id="paddle2Color" value="#ffffff" class="w-10 h-10">
 					</div>
 				</div>
-			</div>
-			<div id="winnerInfo" class="mt-4 text-white text-center gap-2 flex flex-col">
 			</div>
 		</div>
 	`;

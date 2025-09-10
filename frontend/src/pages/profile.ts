@@ -7,7 +7,7 @@ import { escapeHTML } from "../utils/escapeHTML";
 export function	renderProfile(data: any): void {
 	const main = document.getElementById('main-content') as HTMLElement;
 			main.innerHTML = `
-			<div class="flex-col space-y-4">
+			<div class="bg-gray-50 p-6 rounded-xl shadow space-y-4">
 				<div class="flex items-center gap-x-4">
 					<img id="avatarImg" src="" class="w-16 h-16 rounded-full" />
 					<label for="avatarInput" class="cursor-pointer text-gray-400 hover:text-gray-600"> ✎ </label>
@@ -40,7 +40,7 @@ export function	renderProfile(data: any): void {
 					<span> ${data.created_at} </span>
 				</div>
 				<div> 
-					<button id="deleteAccount" type="button" class="rounded px-2 py-1 w-20 text-white bg-blue-500 hover:bg-blue-600"> delete </button> 
+					<button id="deleteAccount" type="button" class="rounded px-2 py-1 w-20 text-white bg-blue-500 hover:bg-blue-600 transition-colors duration-200"> delete </button> 
 				</div>
 			</div>
 			<div id="passwordForm" class="hidden flex flex-col space-y-4 p-10">
@@ -52,8 +52,9 @@ export function	renderProfile(data: any): void {
 				</div>
 			</div>
 			`;
-			hookPassword();
-			handleNameChange();
-			hookAvatar(data);
-			hookDeletion();
+
+	hookPassword();
+	handleNameChange();
+	hookAvatar(data);
+	hookDeletion();
 }

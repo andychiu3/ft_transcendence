@@ -12,7 +12,7 @@ import { render404Page } from "./pages/404";
 import { renderTournamentPage } from "./pages/tournament";
 
 const route: { [key: string]: () => string } = {
-	"/": renderHomePage,
+	"/": renderLoginPage,
 	"/login": renderLoginPage,
 	"/register": renderRegisterPage,
 	"/home": renderHomePage,
@@ -22,7 +22,7 @@ const route: { [key: string]: () => string } = {
 };
 
 const handler: { [key: string]: () => void } = {
-	"/": homeHandler,
+	"/": loginHandler,
 	"/login": loginHandler,
 	"/register": registerHandler,
 	"/home": homeHandler,
