@@ -131,9 +131,13 @@ async function showTerms() {
 }
 
 export async function loginHandler() {
+	const latencyAlertTimer = setTimeout(() => {
+		alert('The API is hosted on Render’s free tier, which may introduce cold start latency of up to 3 minutes.');
+	}, 3000)
+	
 	const isValid = await verifyJwt();
+	clearTimeout(latencyAlertTimer);
 	if (isValid) {
-		alert('The API is hosted on Render’s free tier, which may introduce cold start latency of up to 3 minutes.')
 		import('../app').then((m) => m.navigate('/home')); // combine import {} from xx -> navigate('/home');
 		return ;
 	}

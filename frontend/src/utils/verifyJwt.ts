@@ -8,7 +8,8 @@ export async function	verifyJwt(): Promise<boolean> {
 		});
 		const data = await result.json();
 		return result.ok;
-	} catch (err) {
+	} 
+	catch (err) {
 		console.error('JWT verification failed', err);
 		return false;
 	}
