@@ -7,7 +7,7 @@ import { escapeHTML } from "../utils/escapeHTML";
 export function	renderProfile(data: any): void {
 	const main = document.getElementById('main-content') as HTMLElement;
 			main.innerHTML = `
-			<div class="bg-gray-50 p-6 rounded-xl shadow space-y-4">
+			<div class="bg-gray-50 p-10 rounded-xl shadow space-y-4">
 				<div class="flex items-center gap-x-4">
 					<img id="avatarImg" src="" class="w-16 h-16 rounded-full" />
 					<label for="avatarInput" class="cursor-pointer text-gray-400 hover:text-gray-600"> ✎ </label>

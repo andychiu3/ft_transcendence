@@ -3,7 +3,7 @@
 module.exports = {
   content: ["./index.html", "./src/**/*.{ts,js}"],
   theme: {
-	fontFamily: { sans: ['"verdana"', '"Liberation Sans"', 'sans-serif'] },
+	fontFamily: { sans: ['Geist Sans', 'verdana', 'Liberation Sans', 'sans-serif'] },
     extend: {},
   },
   plugins: [],

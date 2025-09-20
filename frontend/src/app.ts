@@ -1,3 +1,5 @@
+import '@fontsource/geist-sans/400.css';
+
 import { loginHandler } from "./handlers/loginHandler";
 import { registerHandler } from "./handlers/registerHandler";
 import { homeHandler } from "./handlers/homeHandler";
