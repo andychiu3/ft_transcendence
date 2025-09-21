@@ -130,11 +130,37 @@ async function showTerms() {
 	});
 }
 
+async function handlerOAuthCallback(code: string) {
+	try {
+		await fetch(getApiUrl('/api/auth/exchange'), {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ code }),
+			credentials: 'include'
+		});
+
+		window.history.replaceState({}, '', '/login'); // clear code
+		await loginHandler(); // back to login to see if got JWT
+	}
+	catch (err) {
+		console.error('OAuth exchange failed', err);
+		alert('OAuth exchange failed?')
+	}
+}
+
 export async function loginHandler() {
 	const latencyAlertTimer = setTimeout(() => {
 		alert('The API is hosted on Render’s free tier, which may introduce cold start latency of up to 3 minutes.');
 	}, 3000)
 	
+	const urlParams = new URLSearchParams(window.location.search);
+	const code = urlParams.get('code');
+	if (code) {
+		await handlerOAuthCallback(code);
+		clearTimeout(latencyAlertTimer);
+		return ;
+	}
+
 	const isValid = await verifyJwt();
 	clearTimeout(latencyAlertTimer);
 	if (isValid) {

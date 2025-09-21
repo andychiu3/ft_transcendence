@@ -53,8 +53,13 @@ async function getUserFromToken(tokenRes) {
 	return user;
 }
 
-async function handleGoogleCallback(request, reply) {
+async function callbackRedirect(request, reply) {
 	const code = request.query.code;
+	reply.redirect(`${process.env.FRONTEND_URL}/login?code=${code}`);
+}
+
+async function handleGoogleCallback(request, reply) {
+	const code = request.body.code;
 	const tokenRes = await useCodeToGetToken(code);
 	const user = await getUserFromToken(tokenRes);
 
@@ -62,16 +67,35 @@ async function handleGoogleCallback(request, reply) {
 		{ id: user.id, email: user.email }, 
 		process.env.JWT_SECRET, 
 		{ expiresIn: '1h' });
+
 	const isLocalhost = request.headers.origin?.includes('localhost');
 		reply.header('Set-Cookie', 
 			`jwt=${token}; HttpOnly; Path=/; SameSite=${isLocalhost ? 'Lax' : 'None'}; Max-Age=3600${isLocalhost? '' : '; Secure'}`);
+
 	console.log('✅ got jwt now redirecting...');
-	reply.redirect(`${process.env.FRONTEND_URL}`);
+	reply.send({ success: true });
 }
 
 async function remoteSignIn(fastify) {
 	fastify.get('/api/auth/google', redirectToGoogleSignIn);
-	fastify.get('/api/auth/google/callback', handleGoogleCallback);
+	fastify.get('/api/auth/google/callback', callbackRedirect);
+	fastify.post('/api/auth/exchange', handleGoogleCallback);
 }
 
 module.exports = remoteSignIn;
+
+// async function handleGoogleCallback(request, reply) {
+// 	const code = request.query.code;
+// 	const tokenRes = await useCodeToGetToken(code);
+// 	const user = await getUserFromToken(tokenRes);
+
+// 	const token = jwt.sign(
+// 		{ id: user.id, email: user.email }, 
+// 		process.env.JWT_SECRET, 
+// 		{ expiresIn: '1h' });
+// 	const isLocalhost = request.headers.origin?.includes('localhost');
+// 		reply.header('Set-Cookie', 
+// 			`jwt=${token}; HttpOnly; Path=/; SameSite=${isLocalhost ? 'Lax' : 'None'}; Max-Age=3600${isLocalhost? '' : '; Secure'}`);
+// 	console.log('✅ got jwt now redirecting...');
+// 	reply.redirect(`${process.env.FRONTEND_URL}`);
+// }
