@@ -24,11 +24,12 @@ async function login(fastify, opts) {
 			process.env.JWT_SECRET,
 			{ expiresIn: '1h'}
 		);
-		console.log(process.env.JWT_SECRET);
-		const isLocalhost = request.headers.origin?.includes('localhost');
-		reply.header('Set-Cookie', 
-			`jwt=${token}; HttpOnly; Path=/; SameSite=${isLocalhost ? 'Lax' : 'None'}; Max-Age=3600${isLocalhost? '' : '; Secure'}`);
-		reply.send({ success: true });
+		// console.log(process.env.JWT_SECRET);
+		// const isLocalhost = request.headers.origin?.includes('localhost');
+		// reply.header('Set-Cookie', 
+		// 	`jwt=${token}; HttpOnly; Path=/; SameSite=${isLocalhost ? 'Lax' : 'None'}; Max-Age=3600${isLocalhost? '' : '; Secure'}`);
+	
+		reply.setJwtCookie(token).send({ success: true });
 	})
 }
 

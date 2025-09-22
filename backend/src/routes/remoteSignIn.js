@@ -68,12 +68,12 @@ async function handleGoogleCallback(request, reply) {
 		process.env.JWT_SECRET, 
 		{ expiresIn: '1h' });
 
-	const isLocalhost = request.headers.origin?.includes('localhost');
-		reply.header('Set-Cookie', 
-			`jwt=${token}; HttpOnly; Path=/; SameSite=${isLocalhost ? 'Lax' : 'None'}; Max-Age=3600${isLocalhost? '' : '; Secure'}`);
+	// const isLocalhost = request.headers.origin?.includes('localhost');
+	// 	reply.header('Set-Cookie', 
+	// 		`jwt=${token}; HttpOnly; Path=/; SameSite=${isLocalhost ? 'Lax' : 'None'}; Max-Age=3600${isLocalhost? '' : '; Secure'}`);
 
-	console.log('✅ got jwt now redirecting...');
-	reply.send({ success: true });
+	// console.log('✅ got jwt now redirecting...');
+	reply.setJwtCookie(token).send({ success: true });
 }
 
 async function remoteSignIn(fastify) {

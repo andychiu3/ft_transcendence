@@ -26,6 +26,7 @@ fastify.register(require('@fastify/multipart'), {
 });
 
 // routes
+fastify.register(require('./plugin/cookieSetter'));
 fastify.register(require('./routes/login'));
 fastify.register(require('./routes/logout'));
 fastify.register(require('./routes/register'));
