@@ -150,7 +150,7 @@ async function handlerOAuthCallback(code: string) {
 
 export async function loginHandler() {
 	const latencyAlertTimer = setTimeout(() => {
-		alert('The API is hosted on Render’s free tier, which may introduce cold start latency of up to 3 minutes.');
+		alert('The API is hosted on Render’s free tier, which may introduce cold start latency up to 3 minutes.');
 	}, 3000)
 	
 	const urlParams = new URLSearchParams(window.location.search);

@@ -1,3 +1,5 @@
+const fp = require('fastify-plugin')
+
 function	cookieEnvSuffix() {
 	const isProduction = process.env.NODE_ENV === 'production';
 	return isProduction
@@ -19,4 +21,4 @@ async function	cookieSetter(fastify) {
 	})
 }
 
-module.exports = cookieSetter;
+module.exports = fp(cookieSetter);
