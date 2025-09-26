@@ -337,7 +337,7 @@ function gameLoop() {
 			document.getElementById("winnerInfo")!.innerHTML = `<p>${winningplayer} wins!</p>`;
 			document.getElementById("winnerInfo")!.innerHTML += `<button id="finish-button" class="px-4 py-2 bg-white text-black rounded">Finish match</button>`;
 			document.getElementById("finish-button")!.addEventListener("click", () => {
-				navigate('/');
+				navigate('/home');
 			});
 		}
 	}

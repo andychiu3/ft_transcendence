@@ -108,7 +108,7 @@ export function tournamentHandler() {
 		if (tournamentdata.users.length === 1) {
 			alert('tournament done, winner is ' + tournamentdata.users[0]);
 			localStorage.removeItem('tournament');
-			navigate('/');
+			navigate('/home');
 		}
 
 		//set page to the mid match / ongoing tournament page
@@ -128,7 +128,7 @@ export function tournamentHandler() {
 		document.getElementById('end-tournament')!.addEventListener('click', () => {
 			alert('tournament ended early');
 			localStorage.removeItem('tournament');
-			navigate('/');
+			navigate('/home');
 		});
 	}
 	//if there is no ongoing tournament

@@ -45,7 +45,7 @@ function	render(path: string) {
 //to dynamically change title based on the page (stored in path)
 function	changeTitle(path: string) {
 	const titles: { [key: string]: string } = {
-		"/": "Home",
+		"/": "Login",
 		"/login": "Login",
 		"/register": "Register",
 		"/play": "Pong",
