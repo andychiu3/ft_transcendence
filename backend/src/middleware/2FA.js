@@ -5,16 +5,16 @@ const { totp } = require('otplib');
 // sender
 const transporter = nodemailer.createTransport({
 	host: 'smtp.gmail.com',
-	port: 587,
-	secure: false,
+	port: 465,
+	secure: true,
 	auth: {
 		user: process.env.SENDER_EMAIL,
 		pass: process.env.SENDER_PW,
 	},
-	tls: { rejectUnauthorized: false },
-	connectionTimeout: 10000,
-	greetingTimeout: 10000,
-	socketTimeout: 10000,
+	// tls: { rejectUnauthorized: false },
+	// connectionTimeout: 10000,
+	// greetingTimeout: 10000,
+	// socketTimeout: 10000,
 });
 
 function	generateCode() {
