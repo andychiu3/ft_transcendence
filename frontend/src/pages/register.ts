@@ -1,7 +1,7 @@
 export function	renderRegisterPage(): string {
 	return `
 		<div class="min-h-screen w-full flex items-center justify-center">
-			<div class="bg-white p-6 rounded-xl shadow-sm sm:w-full md:w-80 md:max-w-lg space-y-4">
+			<div class="bg-white p-6 rounded-xl shadow-sm w-80gi space-y-4">
 				<h2 class="text-2xl font-bold mb-4 text-center"> Register </h2>
 				<form id="registerForm" class="space-y-6">
 					<div class="space-y-4">
