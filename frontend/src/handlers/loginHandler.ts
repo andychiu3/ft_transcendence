@@ -16,14 +16,14 @@ async function	send2FA(formData: FormData) {
 			body: JSON.stringify({ email }),
 			credentials: 'include',
 		});
-		const result = response.json();
+		// const result = response.json();
 		if (response.ok)
 			alert('code has been sent.');
 		else
 			alert('fail to send OR Render free tier firewall blocks gmail SMTP');
 	}
 	catch {
-		alert('got info which is not json?');
+		alert('fail to send?');
 	}
 }
 
