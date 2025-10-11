@@ -2,19 +2,15 @@ const nodemailer = require('nodemailer');
 const userManagement = require('../db/userManagement');
 const { totp } = require('otplib');
 
-// sender
+// sender tho BLOCKED by firewall of Render
 const transporter = nodemailer.createTransport({
 	host: 'smtp.gmail.com',
-	port: 465,
-	secure: true,
+	port: 587,
+	secure: false,
 	auth: {
 		user: process.env.SENDER_EMAIL,
 		pass: process.env.SENDER_PW,
 	},
-	// tls: { rejectUnauthorized: false },
-	// connectionTimeout: 10000,
-	// greetingTimeout: 10000,
-	// socketTimeout: 10000,
 });
 
 function	generateCode() {

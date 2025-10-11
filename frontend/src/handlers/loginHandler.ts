@@ -20,7 +20,7 @@ async function	send2FA(formData: FormData) {
 		if (response.ok)
 			alert('code has been sent.');
 		else
-			alert('fail to send');
+			alert('fail to send OR Render free tier firewall blocks gmail SMTP');
 	}
 	catch {
 		alert('got info which is not json?');
