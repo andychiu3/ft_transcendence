@@ -41,6 +41,7 @@ fastify.register(require('./routes/matchHistory'));
 fastify.register(require('./routes/users'));
 fastify.register(require('./routes/account'));
 fastify.register(require('./routes/statVersusAI'));
+fastify.register(require('./routes/ping'));
 // 2FA codes
 fastify.register(require('./routes/checkAuthAppSecret')); // google authenticator secret
 fastify.register(require('./routes/2FAcode'));
